@@ -1,0 +1,17 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/encoder_256_8.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/priority4bit.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/ce.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/adder.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/priority256bit.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/cu.v"
+verilog xil_defaultlib  "../../../project_new.srcs/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/rca5.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/ex1.v"
+verilog xil_defaultlib  "../../../../../../../../../root/Downloads/control logic/ce_pe_tb.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

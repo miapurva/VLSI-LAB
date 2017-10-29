@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.4_sdx (64-bit)
+# SW Build 1806307 on Thu Mar  9 15:24:27 MST 2017
+# IP Build 1759159 on Thu Jan 26 07:31:30 MST 2017
+# Start of session at: Thu Oct 26 12:00:48 2017
+# Process ID: 28020
+# Current directory: /home/SDx/2016.4/Vivado/bin/project_new/project_new.runs/synth_1
+# Command line: vivado -log pe_cu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pe_cu.tcl
+# Log file: /home/SDx/2016.4/Vivado/bin/project_new/project_new.runs/synth_1/pe_cu.vds
+# Journal file: /home/SDx/2016.4/Vivado/bin/project_new/project_new.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source pe_cu.tcl -notrace

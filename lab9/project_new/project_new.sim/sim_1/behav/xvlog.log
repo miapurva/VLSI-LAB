@@ -1,0 +1,22 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/encoder_256_8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module encoder_256
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/priority4bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module priority4bit
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/ce.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ce
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/adder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fulladder
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/priority256bit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pe_256
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/cu.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cu
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/SDx/2016.4/Vivado/bin/project_new/project_new.srcs/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/rca5.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rca3
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/ex1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pe_cu
+INFO: [VRFC 10-2263] Analyzing Verilog file "/root/Downloads/control logic/ce_pe_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ce_pe_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/SDx/2016.4/Vivado/bin/project_new/project_new.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

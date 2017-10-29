@@ -1,0 +1,15 @@
+0.6
+2016.4
+Mar  9 2017
+15:39:18
+/home/SDx/2016.4/Vivado/bin/project_new/project_new.sim/sim_1/behav/glbl.v,1488934299,verilog,,,,glbl,,,,,,,,
+/home/SDx/2016.4/Vivado/bin/project_new/project_new.srcs/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v,1508999071,verilog,,,,blk_mem_gen_0,,,,,,,,
+/root/Downloads/control logic/adder.v,1508903212,verilog,,,,fulladder,,,,,,,,
+/root/Downloads/control logic/ce.v,1508903214,verilog,,,,ce,,,,,,,,
+/root/Downloads/control logic/ce_pe_tb.v,1508997693,verilog,,,,ce_pe_tb,,,,,,,,
+/root/Downloads/control logic/cu.v,1508997542,verilog,,,,cu,,,,,,,,
+/root/Downloads/control logic/ex1.v,1508998042,verilog,,,,pe_cu,,,,,,,,
+/root/Downloads/control logic/priority256bit.v,1508997687,verilog,,,,pe_256,,,,,,,,
+/root/Downloads/control logic/priority4bit.v,1508903214,verilog,,,,priority4bit,,,,,,,,
+/root/Downloads/control logic/rca5.v,1508998008,verilog,,,,rca3,,,,,,,,
+/root/Downloads/encoder_256_8.v,1508997301,verilog,,,,encoder_256,,,,,,,,
