@@ -1,0 +1,45 @@
+module PriorityEncoder_4Bit(
+    input [0:3] D,
+    output [1:0] Y,
+    output V
+    );
+  reg [1:0] Y;
+  reg V;
+  always @(D)
+  begin
+  Y[1] <= D[2] | D[3];
+  Y[0] <= D[3] | D[1] & ~D[2];
+  V = D[0] | D[1] | D[2] | D[3];
+ end
+endmodule
+
+module PriorityEncoder_4Bit_Test;
+ // Inputs
+ reg [3:0] D;
+ // Outputs
+ wire [1:0] Y;
+ wire V;
+ // Instantiate the Unit Under Test (UUT)
+ PriorityEncoder_4Bit uut (
+  .D(D), 
+  .Y(Y), 
+  .V(V)
+ );
+ initial begin
+  // Initialize Inputs
+  D = 0;
+  // Wait 100 ns for global reset to finish
+  #100;        
+  // Add stimulus here
+  #10 D = 4'b0000;
+  #10 D = 4'b1000;
+  #10 D = 4'b0100;
+  #10 D = 4'b0010;
+  #10 D = 4'b0001;
+  #10 D = 4'b1010;
+  #10 D = 4'b1111;
+ end 
+ initial begin
+  $monitor("time=",$time,, "D=%b : Y=%b V=%b",D,Y,V); 
+ end      
+endmodule
