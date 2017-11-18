@@ -1,26 +1,40 @@
-class ssstack:
+class Stack:
      def __init__(self):
-        self.items = []
+         self.items = []
 
      def isEmpty(self):
-        return self.items == []
+         return self.items == []
 
      def push(self, item):
-        self.items.append(item)
+         self.items.append(item)
 
      def pop(self):
-        return self.items.pop()
+         return self.items.pop()
 
      def peek(self):
-        return self.items[len(self.items)-1]
+         return self.items[len(self.items)-1]
 
      def size(self):
-        return len(self.items)
+         return len(self.items)
+
+
 
 def infix_to_postfix():
+	
 	infx=str(input('Enter the infix expression : '))
+	print (infx)
 	e=list(infx)
-	print(e)
+	print (e)
+	#exp=e
+	#e=[]
+	print("Enter the values as 0|1 for the given operands\n")
+	for i in range(len(e)):
+		if e[i].isalpha():
+			#the below first line is correct change the "c"
+			e[i]=input("Enter the value for " + e[i]+ "\n")
+	#print (exp)
+	print (e)		#i=input(e[i])
+
 	pr = {}
 	pr["!"] = 4
 	pr["."] = 3
@@ -28,10 +42,12 @@ def infix_to_postfix():
 	pr["("] = 1
 	pr["$"] = 0
 	postfix_list=[]
-	opstack=ssstack()
-	
+	#opstack:object
+	opstack=Stack()
+	#opstack.push('$')
 	for ch in e:
-		if ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" :
+	#while((ch=e[i])!='\0')
+		if ch in "10" :
 			postfix_list.append(ch)
 		elif ch=='(':
 			opstack.push(ch)
@@ -52,20 +68,20 @@ def infix_to_postfix():
 	return "".join(postfix_list)
 	
 
-def Eval(post_exp):
-	nmosStack = ssstack()
-	pmosStack = ssstack()
-	e = list(post_exp)
+def Eval(postfixexp):
+	nmosStack = Stack()
+	pmosStack = Stack()
+	e = list(postfixexp)
 
 	for ch in e:
-		if ch in "ABCDEFGHIJKLMNRSTUVWXYZabcdefghijklmnrstuvwxyz":
+		if ch in "10":
 			nmosStack.push(ch)
 			pmosStack.push(ch)
 		else:
-			#nmos
+			#for_nmos
 			result = nmosOper(ch,nmosStack)
 			nmosStack.push(result)
-            #pmos
+            #for_pmos
 			result = pmosOper(ch,pmosStack)
 			pmosStack.push(result)
 
@@ -73,11 +89,9 @@ def Eval(post_exp):
 	print("OUTPUT O" + str(out_counter) )
 
 out_counter=0
-#input counters
 x_counter=0
 y_counter=0
 
-#performing the NMOS operation
 def nmosOper(op, nmosStack):
 	global out_counter
 	global x_counter
@@ -90,15 +104,39 @@ def nmosOper(op, nmosStack):
 	if op==".":
 		operand2=nmosStack.pop()
 		operand1=nmosStack.pop()
-
+		'''print(operand2+ "itsme\n")
+		print(operand1+ "hiii\n")'''
 		x_counter=x_counter+1
 		y_counter=y_counter+1
-		print("nmos ( GND, " + str(operand2) + ", X" + str(x_counter) + " )")
-		print("nmos ( X" +str(x_counter)+ " , " + str(operand1) +", Y" + str(y_counter)+ " )")
+		'''k=0
+		if bool(k):
+			print("abc")'''
+		#if bool(operand2):
+		
+		print("nmos ( GND, " + str(operand2) + ", X" + str(x_counter) + " )\t")
+		if bool(operand2):
+			print("ON\n")
+		else:
+			print("OFF\n")
 
+		print("nmos ( X" +str(x_counter)+ " , " + str(operand1) +", Y" + str(y_counter)+ " )")
+		if bool(operand1):
+			print("ON\n")
+		else:
+			print("OFF\n")
 		 # Inverted in(parallel)
 		print("nmos ( GND, Y" + str(y_counter) + ", " + str(output) + " )" )
-
+		#print(operand1)
+		if (bool(operand2) & bool(operand1)):
+			outputx=1
+			print("ON\n")
+		else:
+			outputx=0
+			print("OFF\n")
+		'''if bool(outputx):
+			
+		else:'''
+			
     #nmos parallel connection
 	elif op == "+":
 		operand2=nmosStack.pop()
@@ -106,19 +144,37 @@ def nmosOper(op, nmosStack):
 
 		x_counter=x_counter+1
 		y_counter=y_counter+1
+		
 		print("nmos ( GND, " + str(operand2) + ", Y" + str(y_counter) + " )" )
+		if bool(operand2):
+			print("ON\n")
+		else:
+			print("OFF\n")
 		print("nmos ( GND, " + str(operand1) + ", Y" + str(y_counter) + " )" )
-
+		if bool(operand1):
+			print("ON\n")
+		else:
+			print("OFF\n")
         #inverted in (series)
 		print("nmos ( GND, Y" + str(y_counter) + ", " + str(output) + " )" )
+		if (bool(operand2)!=1 | bool(operand1)!=1):
+			outputx=0
+		else:
+			outputx=1
+		if bool(outputx):
+			print("ON\n")
+		else:
+			print("OFF\n")
 	else: # not case
 		operand1 = nmosStack.pop()
-
-        # Invert output
+		outputx=-1
 		print("nmos ( GND, " + str(operand1) + ", " + str(output) + " )" )
-	return output
+		if bool(operand1):
+			print("ON\n")
+		else:
+			print("OFF\n")
+	return outputx
 
-#performing the PMOS operaation
 def pmosOper(op, pmosStack):
 	global out_counter
 	global x_counter
@@ -133,10 +189,26 @@ def pmosOper(op, pmosStack):
 
 
 		print("pmos ( VDD, " + str(operand2) + ", Y" + str(y_counter) + " )")
+		if bool(operand2):
+			print("OFF\n")
+		else:
+			print("ON\n")
+			
 		print("pmos ( VDD, " + str(operand1) + ", Y" + str(y_counter) + " )")
-
+		if bool(operand1):
+			print("OFF\n")
+		else:
+			print("ON\n")
 		#Invert output
 		print("pmos ( VDD, Y" + str(y_counter) + ", " + str(output) + " )" )
+		if (bool(operand2) | bool(operand1)):
+			outputx=1
+		else:
+			outputx=0
+		if bool(outputx)!=1:
+			print("ON\n")
+		else:
+			print("OFF\n")
 	elif op == "+":
 		operand2 = pmosStack.pop()
 		operand1 = pmosStack.pop()
@@ -144,20 +216,63 @@ def pmosOper(op, pmosStack):
         # PMOS(S,G,D)
         # Series
 		print("pmos ( VDD, " + str(operand2) + ", X" + str(x_counter) + " )" )
+		if bool(operand2):
+			print("OFF\n")
+		else:
+			print("ON\n")
 		print("pmos ( X" + str(x_counter) + " , " + str(operand1) + ", Y" + str(y_counter) + " )" )
-
+		if bool(operand1):
+			print("OFF\n")
+		else:
+			print("ON\n")
         # Invert output
 		print("pmos ( VDD, Y" + str(y_counter) + ", " + str(output) + " )" )
+		if (bool(operand2)!=1 & bool(operand1)!=1):
+			outputx=0
+		else:
+			outputx=1
+		if bool(outputx):
+			print("OFF\n")
+		else:
+			print("ON\n")
 	else: # not case
 		operand1 = pmosStack.pop()
 
         # Invert output
+		#outputx=-1
 		print("pmos ( VDD, " + str(operand1) + ", " + str(output) + " )" )
+		if bool(operand1):
+			print("OFF\n")
+		else:
+			print("ON\n")
 	return output
 
-#converting the given infix expression to postfix 
 k=infix_to_postfix()
-#printing the postfix form of the given input
-print("POSTFIX expression: " + k)
+print(k)
 
+Stack=[]
+for i in k:
+	if i.isdigit():
+		if int(i) is 1:
+			Stack.append(True)
+		else:
+			Stack.append(False)
+	elif i=='+':
+		m=Stack.pop()
+		n=Stack.pop()
+		Stack.append(m or n)
+	elif i=='.':
+		m=Stack.pop()
+		n=Stack.pop()
+		Stack.append(m and n)
+	elif i=='!':
+		m=Stack.pop()
+		Stack.append(not m)
+
+if Stack.pop():
+	print ("1")
+else:
+	print("0")
+
+#Eval('AB+!C.')
 	

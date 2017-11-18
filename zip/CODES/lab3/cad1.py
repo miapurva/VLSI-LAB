@@ -1,26 +1,27 @@
-class ssstack:
+class Stack:
      def __init__(self):
-        self.items = []
+         self.items = []
 
      def isEmpty(self):
-        return self.items == []
+         return self.items == []
 
      def push(self, item):
-        self.items.append(item)
+         self.items.append(item)
 
      def pop(self):
-        return self.items.pop()
+         return self.items.pop()
 
      def peek(self):
-        return self.items[len(self.items)-1]
+         return self.items[len(self.items)-1]
 
      def size(self):
-        return len(self.items)
+         return len(self.items)
 
+
+#print (e)
 def infix_to_postfix():
 	infx=str(input('Enter the infix expression : '))
 	e=list(infx)
-	print(e)
 	pr = {}
 	pr["!"] = 4
 	pr["."] = 3
@@ -28,9 +29,11 @@ def infix_to_postfix():
 	pr["("] = 1
 	pr["$"] = 0
 	postfix_list=[]
-	opstack=ssstack()
-	
+	#opstack:object
+	opstack=Stack()
+	#opstack.push('$')
 	for ch in e:
+	#while((ch=e[i])!='\0')
 		if ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" :
 			postfix_list.append(ch)
 		elif ch=='(':
@@ -52,10 +55,10 @@ def infix_to_postfix():
 	return "".join(postfix_list)
 	
 
-def Eval(post_exp):
-	nmosStack = ssstack()
-	pmosStack = ssstack()
-	e = list(post_exp)
+def Eval(postfixexp):
+	nmosStack = Stack()
+	pmosStack = Stack()
+	e = list(postfixexp)
 
 	for ch in e:
 		if ch in "ABCDEFGHIJKLMNRSTUVWXYZabcdefghijklmnrstuvwxyz":
@@ -72,12 +75,12 @@ def Eval(post_exp):
 	global out_counter
 	print("OUTPUT O" + str(out_counter) )
 
+
 out_counter=0
 #input counters
 x_counter=0
 y_counter=0
 
-#performing the NMOS operation
 def nmosOper(op, nmosStack):
 	global out_counter
 	global x_counter
@@ -93,11 +96,11 @@ def nmosOper(op, nmosStack):
 
 		x_counter=x_counter+1
 		y_counter=y_counter+1
-		print("nmos ( GND, " + str(operand2) + ", X" + str(x_counter) + " )")
-		print("nmos ( X" +str(x_counter)+ " , " + str(operand1) +", Y" + str(y_counter)+ " )")
+		print("nmos -----> GND, " + str(operand2) + ", X" + str(x_counter) + " )------>")
+		print("nmos -----> X" +str(x_counter)+ " , " + str(operand1) +", Y" + str(y_counter)+ " )-------")
 
 		 # Inverted in(parallel)
-		print("nmos ( GND, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("nmos -----> GND, Y" + str(y_counter) + ", " + str(output) + " )------->" )
 
     #nmos parallel connection
 	elif op == "+":
@@ -106,19 +109,18 @@ def nmosOper(op, nmosStack):
 
 		x_counter=x_counter+1
 		y_counter=y_counter+1
-		print("nmos ( GND, " + str(operand2) + ", Y" + str(y_counter) + " )" )
-		print("nmos ( GND, " + str(operand1) + ", Y" + str(y_counter) + " )" )
+		print("nmos -----> GND, " + str(operand2) + ", Y" + str(y_counter) + " )------->" )
+		print("nmos -----> GND, " + str(operand1) + ", Y" + str(y_counter) + " )-------->" )
 
         #inverted in (series)
-		print("nmos ( GND, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("nmos -----> GND, Y" + str(y_counter) + ", " + str(output) + " )--------->" )
 	else: # not case
 		operand1 = nmosStack.pop()
 
         # Invert output
-		print("nmos ( GND, " + str(operand1) + ", " + str(output) + " )" )
+		print("nmos ----> GND, " + str(operand1) + ", " + str(output) + " )--------->" )
 	return output
 
-#performing the PMOS operaation
 def pmosOper(op, pmosStack):
 	global out_counter
 	global x_counter
@@ -132,32 +134,30 @@ def pmosOper(op, pmosStack):
 		operand1=pmosStack.pop()
 
 
-		print("pmos ( VDD, " + str(operand2) + ", Y" + str(y_counter) + " )")
-		print("pmos ( VDD, " + str(operand1) + ", Y" + str(y_counter) + " )")
+		print("pmos ----> VDD, " + str(operand2) + ", Y" + str(y_counter) + " )-------->")
+		print("pmos -----> VDD, " + str(operand1) + ", Y" + str(y_counter) + " )-------->")
 
 		#Invert output
-		print("pmos ( VDD, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("pmos -----> VDD, Y" + str(y_counter) + ", " + str(output) + " )-------->" )
 	elif op == "+":
 		operand2 = pmosStack.pop()
 		operand1 = pmosStack.pop()
 
         # PMOS(S,G,D)
         # Series
-		print("pmos ( VDD, " + str(operand2) + ", X" + str(x_counter) + " )" )
-		print("pmos ( X" + str(x_counter) + " , " + str(operand1) + ", Y" + str(y_counter) + " )" )
+		print("pmos -----> VDD, " + str(operand2) + ", X" + str(x_counter) + " )-------->" )
+		print("pmos -----> X" + str(x_counter) + " , " + str(operand1) + ", Y" + str(y_counter) + " )------" )
 
         # Invert output
-		print("pmos ( VDD, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("pmos -----> VDD, Y" + str(y_counter) + ", " + str(output) + " )------->" )
 	else: # not case
 		operand1 = pmosStack.pop()
 
         # Invert output
-		print("pmos ( VDD, " + str(operand1) + ", " + str(output) + " )" )
+		print("pmos -----> VDD, " + str(operand1) + ", " + str(output) + " )-------->" )
 	return output
 
-#converting the given infix expression to postfix 
 k=infix_to_postfix()
-#printing the postfix form of the given input
-print("POSTFIX expression: " + k)
-
+print(k)
+#Eval('AB+!C.')
 	

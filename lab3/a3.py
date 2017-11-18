@@ -95,11 +95,11 @@ def nmosOper(op, nmosStack):
 
 		x_counter=x_counter+1
 		y_counter=y_counter+1
-		print("nmos ( GND, " + str(operand2) + ", X" + str(x_counter) + " )")
-		print("nmos ( X" +str(x_counter)+ " , " + str(operand1) +", Y" + str(y_counter)+ " )")
+		print("nmos------>GND, " + str(operand2) + ", X" + str(x_counter) + " ------>")
+		print("nmos ------> X" +str(x_counter)+ " , " + str(operand1) +", Y" + str(y_counter)+ " ------>")
 
 		 # Inverted in(parallel)
-		print("nmos ( GND, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("nmos ------> GND, Y" + str(y_counter) + ", " + str(output) + " ------>" )
 
     #nmos parallel connection
 	elif op == "+":
@@ -108,16 +108,16 @@ def nmosOper(op, nmosStack):
 
 		x_counter=x_counter+1
 		y_counter=y_counter+1
-		print("nmos ( GND, " + str(operand2) + ", Y" + str(y_counter) + " )" )
-		print("nmos ( GND, " + str(operand1) + ", Y" + str(y_counter) + " )" )
+		print("nmos------> GND, " + str(operand2) + ", Y" + str(y_counter) + " ------>" )
+		print("nmos ------>GND, " + str(operand1) + ", Y" + str(y_counter) + " ------>" )
 
         #inverted in (series)
-		print("nmos ( GND, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("nmos ------> GND, Y" + str(y_counter) + ", " + str(output) + "------>" )
 	else: # not case
 		operand1 = nmosStack.pop()
 
         # Invert output
-		print("nmos ( GND, " + str(operand1) + ", " + str(output) + " )" )
+		print("nmos ------>GND, " + str(operand1) + ", " + str(output) + " ------>" )
 	return output
 
 def pmosOper(op, pmosStack):
@@ -133,27 +133,27 @@ def pmosOper(op, pmosStack):
 		operand1=pmosStack.pop()
 
 
-		print("pmos ( VDD, " + str(operand2) + ", Y" + str(y_counter) + " )")
-		print("pmos ( VDD, " + str(operand1) + ", Y" + str(y_counter) + " )")
+		print("pmos ------> VDD, " + str(operand2) + ", Y" + str(y_counter) + " ------>" )
+		print("pmos ------> VDD, " + str(operand1) + ", Y" + str(y_counter) + " ------>" ) 
 
 		#Invert output
-		print("pmos ( VDD, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("pmos ------> VDD, Y" + str(y_counter) + ", " + str(output) + "------>" )
 	elif op == "+":
 		operand2 = pmosStack.pop()
 		operand1 = pmosStack.pop()
 
         # PMOS(S,G,D)
         # Series
-		print("pmos ( VDD, " + str(operand2) + ", X" + str(x_counter) + " )" )
-		print("pmos ( X" + str(x_counter) + " , " + str(operand1) + ", Y" + str(y_counter) + " )" )
+		print("pmos------> VDD, " + str(operand2) + ", X" + str(x_counter) + " ------>" )
+		print("pmos------> X" + str(x_counter) + " , " + str(operand1) + ", Y" + str(y_counter) + " )" )
 
         # Invert output
-		print("pmos ( VDD, Y" + str(y_counter) + ", " + str(output) + " )" )
+		print("pmos ------>VDD, Y" + str(y_counter) + ", " + str(output) + " ------>" )
 	else: # not case
 		operand1 = pmosStack.pop()
 
         # Invert output
-		print("pmos ( VDD, " + str(operand1) + ", " + str(output) + " )" )
+		print("pmos ------>VDD, " + str(operand1) + ", " + str(output) + " ------>" )
 	return output
 #Eval(e)
 Eval('AB+!C.')
